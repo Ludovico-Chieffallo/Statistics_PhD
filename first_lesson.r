@@ -266,6 +266,39 @@ data$c18=data$c24 # substitutes the content of the column ‘c18’ with the one
 #the file in R using the appropriate function, 3) calculate mean, variance and standard deviation for all
 #the variables of the dataset, 4) remove the second column, 5) export the modified dataset as a plain text
 #file (.csv file if the imported file was .txt, .txt if the imported file was .csv). 
+setwd("D:/Desktop/Statistics/first lesson/R")
+getwd()
+install.packages("readxl")
+library(readxl)
+library(dplyr)
+dati <- read_excel("rats.xls")
+mean(dati$Glycogen)
+mean(dati$Treatment)
+mean(dati$Rat)
+mean(dati$Liver)
+#Use summary, is better
+summary(dati)
+
+
+var(dati)
+
+sd(dati$Glycogen)
+sd(dati$Treatment)
+sd(dati$Rat)
+sd(dati$Liver)
+#or you can use apply() (is like a loop)
+apply(dati,2, sd)
+
+
+rats<-dati[,-2]
+#or manually
+dati<-dati %>% 
+  select("Glycogen","Rat","Liver")
+
+write.table(dati,file="dati.csv",row.names=F,col.names=T,quote=F,sep=",")
+
+
+
 #SAVING THE SESSION----
 #After completing these operations, the current workspace has been populated by a series of objects. To
 #have a list of them:
