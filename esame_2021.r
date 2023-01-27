@@ -97,6 +97,11 @@ pesi.km=kmeans(scale(pesi[,-7]),centers=3,nstart=10)
 pesi.km
 #K-means clustering with 3 clusters of sizes 5, 7, 11
 
+#ottimo modo per vedere i risultati
+install.packages("factoextra")
+library(factoextra)
+fviz_cluster(pesi.km,pesi[,-7])
+
 
 table(pesi.km$cluster,pesi$class)
 
